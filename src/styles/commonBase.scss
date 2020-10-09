@@ -38,93 +38,88 @@
     scrollbar-width: none;
 }
 
-.z-relative,
-.z-rela {
+/*position*/
+
+.z_relative,
+.z_rela {
     position: relative;
 }
-
-.z-absolute,
-.z-abso {
+.z_absolute,
+.z_abso {
     position: absolute;
 }
 
-.z-flex {
+
+/*flex*/
+
+.z_flex {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-
-.z-flex-wrap {
+.z_flex_wrap {
     flex-wrap: wrap;
 }
-
-.z-flex-nowrap {
+.z_flex_nowrap {
     flex-wrap: nowrap;
 }
-
-.z-col-center {
+.z_col_center {
     align-items: center;
 }
-
-.z-col-top {
+.z_col_top {
     align-items: flex-start;
 }
-
-.z-col-bottom {
+.z_col_bottom {
     align-items: flex-end;
 }
-
-.z-row-center {
+.z_row_center {
     justify-content: center;
 }
-
-.z-row-left {
+.z_row_left {
     justify-content: flex-start;
 }
-
-.z-row-right {
+.z_row_right {
     justify-content: flex-end;
 }
-
-.z-row-between {
+.z_row_between {
     justify-content: space-between;
 }
-
-.z-row-around {
+.z_row_around {
     justify-content: space-around;
 }
-
-.z-text-left {
-    text-align: left;
-}
-
-.z-text-center {
-    text-align: center;
-}
-
-.z-text-right {
-    text-align: right;
-}
-
-.z-flex-col {
+.z_flex_col {
     display: flex;
     flex-direction: column;
 }
 
-.z-flex-shrink {
+.z_flex_shrink {
     flex-shrink: 0;
 }
 
+
+/*text-align*/
+
+.z_text_left {
+    text-align: left;
+}
+.z_text_center {
+    text-align: center;
+}
+.z_text_right {
+    text-align: right;
+}
+
+
 /*min-width*/
-.min-width-0 {
+.min_width_0 {
     min-width: 0;
 }
 
-.z-csp {
+.z_csp {
     cursor: pointer;
 }
 
-.z-clearfix {
+.z_clearfix {
     *zoom: 1;
 
     /*ie6 7 不支持伪元素*/
@@ -139,36 +134,44 @@
     }
 }
 
+/*display*/
 
-.z-ib {
+.z_ib {
     display: inline-block;
     *display: inline;
     *zoom: 1;
 }
-
-.z-dn {
+.z_dn {
     display: none;
 }
-
-.z-db {
+.z_db {
     display: block;
 }
 
-.z-nowrap {
+/*wrap*/
+
+.z_nowrap {
     word-wrap: normal;
     white-space: nowrap;
 }
-
-.z-wrap {
+.z_wrap {
     white-space: normal;
     word-wrap: break-word;
     word-break: break-all;
 }
 
-.z-oh {
+.z_oh {
     overflow: hidden;
 }
 
 .z_font_bold {
     font-weight: bold;
+}
+
+.z_w_100 {
+    width: 100%;
+}
+
+.z_h_100 {
+    height: 100%;
 }
