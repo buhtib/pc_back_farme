@@ -1,10 +1,11 @@
 import _ from "lodash";
 let md5 = require("js-md5");
 import dayjs from "dayjs";
-var relativeTime = require('dayjs/plugin/relativeTime')
+import { dateTimeFormat,dateFormat } from '@/constValues'
+var relativeTime = require("dayjs/plugin/relativeTime");
 //配置dayjs中文包
-require('dayjs/locale/zh-cn')
-dayjs.locale('zh-cn')
+require("dayjs/locale/zh-cn");
+dayjs.locale("zh-cn");
 
 export default {
     /***
@@ -31,6 +32,26 @@ export default {
      */
     dayjs: dayjs,
     /**
+     * 时间格式化
+     *
+     * @param {String} value 时间
+     * @param {String} format format格式
+     *  format 默认支持参数 dt,d  也可自定义 @example https://day.js.org/docs/zh-CN/parse/string-format
+     *
+     * @example $utils.dateFormatter('2020/2/19','dt')
+     *
+     * @returns format后的时间
+     */
+    dateFormatter(value, format) {
+        if (!value) return "";
+        const formatMap = {
+            dt: dateTimeFormat,
+            d: dateFormat
+        };
+
+        return dayjs(value).format(formatMap[format] || format);
+    },
+    /**
      * 时间转时间戳
      *
      * @param { string | date } d 时间字符串或时间
@@ -39,10 +60,10 @@ export default {
      */
     dateToTemptime(d) {
         if (!dayjs(d).isValid()) {
-            return 0
+            return 0;
         }
 
-        return +dayjs(d).valueOf()
+        return +dayjs(d).valueOf();
     },
     /**
      * 时间显示，几秒之前，几分钟之前，几天之前....
@@ -53,11 +74,11 @@ export default {
      */
     dateDisplayBefore(d) {
         if (!dayjs(d).isValid()) {
-            return 0
+            return 0;
         }
-        dayjs.extend(relativeTime)
+        dayjs.extend(relativeTime);
 
-        return dayjs(d).fromNow()
+        return dayjs(d).fromNow();
     },
     /**
      * 获取高度
@@ -93,7 +114,6 @@ export default {
         return documentHeight - 160 - minusHeight;
     },
 
-
     /**
      * 表情和中文字去除
      */
@@ -122,8 +142,8 @@ export default {
      *
      */
     scrollToTop(el, scrollTop = 0) {
-        const cubic = (value) => Math.pow(value, 3);
-        const easeInOutCubic = (value) =>
+        const cubic = value => Math.pow(value, 3);
+        const easeInOutCubic = value =>
             value < 0.5 ? cubic(value * 2) / 2 : 1 - cubic((1 - value) * 2) / 2;
 
         el = el || document.documentElement;
@@ -131,7 +151,7 @@ export default {
         //开始位置
         const beginValue = el.scrollTop;
         const rAF =
-            window.requestAnimationFrame || ((func) => setTimeout(func, 16));
+            window.requestAnimationFrame || (func => setTimeout(func, 16));
         const frameFunc = () => {
             if (scrollTop) {
                 el.scrollTop = scrollTop;
