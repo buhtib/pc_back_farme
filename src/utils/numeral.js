@@ -39,12 +39,18 @@ export default {
      * 金钱格式化(保留两位小数，四舍五入)
      *
      * @param {Number | String} money 金钱数字
+     * @param {Boolean} hasSymbol 是否需要符号
+     * @param {Boolean} hasDecimal 是否需要小数
      *
      * @example 1000.234 -> ￥1,000.23
      *
      */
-    numberToMoney(money) {
-        return  numeral(money).format('$0,0.00');
+    numberToMoney(money, hasSymbol = true, hasDecimal = true) {
+        const symbol = hasSymbol ? '$' :''
+        const decimal = hasSymbol ? '.00' :''
+
+
+        return  !money ? 0 : numeral(money).format(`${symbol}0,0${decimal}`);
     },
     /**
      * 数字格式化(保留两位小数，四舍五入)

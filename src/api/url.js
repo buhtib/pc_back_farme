@@ -1,4 +1,5 @@
 //存放所有的公共 url
 
-// export const uploadImgUrl = 'https://imgkr.com/api/files/upload'
+//上传图片
+export const uploadImgUrl = 'http://192.168.1.170:8080/minio/upload'
 

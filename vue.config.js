@@ -9,7 +9,7 @@ const productionGzip = true;
 // 需要gzip压缩的文件后缀
 const productionGzipExtensions = ["js", "css"];
 // 开发端口 port
-const port = process.env.port || process.env.npm_config_port || 9000;
+const port = process.env.port || process.env.npm_config_port || 9001;
 //代理地址
 const devServerProxyTargetUrl = "https://m.maoyan.com/ajax";
 
