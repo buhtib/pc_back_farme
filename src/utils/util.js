@@ -191,4 +191,22 @@ export default {
                 {}
             );
     },
+    /**
+     * file转base64
+     *
+     * @param {*} file
+     */
+    fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            //创建对象读取文件
+            let reader = new FileReader();
+
+            reader.readAsDataURL(file);
+            //readAsDataURL函数读取数据触发的回调
+            reader.onload = function(e) {
+                // e.target.result就是该文件的完整Base64 Data-URI
+                resolve(e.target.result);
+            };
+        });
+    }
 };
