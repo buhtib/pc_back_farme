@@ -1,10 +1,9 @@
 import Vue from 'vue'
-import { date, dateTime } from './dateFormat'
+import dateFormat from './dateFormat'
 import noContentFormat from './noContentFormat'
 
 const filters = {
-    dateFormat:date,
-    dateTimeFormat: dateTime,
+    dateFormat:dateFormat,
     noContentFormat:noContentFormat
 };
 
