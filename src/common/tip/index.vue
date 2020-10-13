@@ -17,6 +17,3 @@ export default {
 	name: "tip",
 };
 </script>
-
-<style lang='scss' scoped>
-</style>
