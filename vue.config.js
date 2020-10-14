@@ -133,6 +133,7 @@ module.exports = {
     devServer: {
         port: port,
         open: true,
+        disableHostCheck: true,
         proxy: {
             "/": {
                 target: devServerProxyTargetUrl,
