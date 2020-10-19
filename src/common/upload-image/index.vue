@@ -16,6 +16,7 @@
 				<el-upload
 					:action="$uploadImgUrl"
 					:show-file-list="false"
+					:before-upload="beforeUpload"
 					:on-progress="onProgress"
 					:on-success="onSuccess"
 				>
@@ -30,14 +31,15 @@
 			<el-upload
 				:action="$uploadImgUrl"
 				:show-file-list="false"
+				:before-upload="beforeUpload"
 				:on-progress="onProgress"
 				:on-success="onSuccess"
 			>
 				<i class="el-icon-plus"></i>
 			</el-upload>
 		</div>
-		<el-dialog title="查看图片" width="50%" :visible.sync="dialogVisible" append-to-body >
-			<div class="uploaded_img ">
+		<el-dialog title="查看图片" width="50%" :visible.sync="dialogVisible" append-to-body>
+			<div class="uploaded_img">
 				<el-image :src="srcUrl">
 					<div slot="placeholder" class="img_slot">
 						<i class="el-icon-loading"></i>
@@ -78,11 +80,18 @@ export default {
 		},
 	},
 	methods: {
+		beforeUpload(__file) {
+            let isLt10M = __file.size / 1024 / 1024 < 20;
+            if (!isLt10M) {
+                this.$message.error("上传文件大小不能超过 20MB");
+            }
+
+            return isLt10M
+		},
 		onProgress() {
 			this.loading = true;
 		},
 		onSuccess(__resultData) {
-            console.log(__resultData);
 			if (__resultData.code === 0) {
 				this.$message.success("上传成功");
 				this.srcUrl = __resultData.data.url;
@@ -136,8 +145,8 @@ export default {
 }
 
 .uploaded_img {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 	margin: -15px -20px;
 	line-height: 0;
 }

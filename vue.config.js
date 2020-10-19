@@ -23,26 +23,26 @@ module.exports = {
     // baseUrl: '/dist', //线上环境
     publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
     /**
-     * 经过一顿搜索，发现js的map文件.原来map文件只是帮助我们调试用的，
+     * js的map文件.原来map文件只是帮助我们调试用的，
      * 毕竟打包后的代码都是压缩的，调试起来很不方便。测试没问题，正式上线时，我们完全可以去掉这个文件
      * @value  为false打包时不生成 .map文件减少打包大小
      */
     productionSourceMap: false,
-    css: {
-        loaderOptions: {
-            // 默认情况下 `sass` 选项会同时对 `sass` 和 `scss` 语法同时生效
-            // 因为 `scss` 语法在内部也是由 sass-loader 处理的
-            // 但是在配置 `data` 选项的时候
-            // `scss` 语法会要求语句结尾必须有分号，`sass` 则要求必须没有分号
-            // 在这种情况下，我们可以使用 `scss` 选项，对 `scss` 语法进行单独配置
-            scss: {
-                data: `@import "~@/styles/index.scss";`
-            }
-        }
-    },
+    //将css设置在全局，这样会影响打包体积及运行速度
+    // css: {
+    //     loaderOptions: {
+    //         // 默认情况下 `sass` 选项会同时对 `sass` 和 `scss` 语法同时生效
+    //         // 因为 `scss` 语法在内部也是由 sass-loader 处理的
+    //         // 但是在配置 `data` 选项的时候
+    //         // `scss` 语法会要求语句结尾必须有分号，`sass` 则要求必须没有分号
+    //         // 在这种情况下，我们可以使用 `scss` 选项，对 `scss` 语法进行单独配置
+    //         scss: {
+    //             data: `@import "~@/styles/index.scss";`
+    //         }
+    //     }
+    // },
     configureWebpack: config => {
         if (process.env.NODE_ENV === "production") {
-
             //压缩代码 去除consolelog
             config.optimization = {
                 minimizer: [
@@ -118,10 +118,22 @@ module.exports = {
 
         /**
          * 删除懒加载模块的prefetch，降低带宽压力
-         * https://cli.vuejs.org/zh/guide/html-and-static-assets.html#prefetch
-         * 而且预渲染时生成的prefetch标签是modern版本的，低版本浏览器是不需要的
+         * 它可以提高第一个屏幕的速度，建议打开预加载
          */
-        config.plugins.delete("preload");
+        config.plugin("preload").tap(() => [
+            {
+                rel: "preload",
+                // 忽略 runtime.js
+                // https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/config/app.js#L171
+                fileBlacklist: [
+                    /\.map$/,
+                    /hot-update\.js$/,
+                    /runtime\..*\.js$/
+                ],
+                include: "initial"
+            }
+        ]);
+
         config.plugins.delete("prefetch");
 
         // https://webpack.js.org/configuration/devtool/#development

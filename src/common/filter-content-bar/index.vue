@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "@/styles/common.scss";
+
 .filter_content_bar {
 	height: 40px;
 	line-height: 40px;

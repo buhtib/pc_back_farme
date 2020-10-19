@@ -29,6 +29,9 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "@/styles/common.scss";
+@import "@/styles/cycleOut.scss";
+
 .page_header {
 	position: fixed;
 	top: 0;

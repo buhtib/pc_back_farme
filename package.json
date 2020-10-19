@@ -1,5 +1,5 @@
 {
-    "name": "frame",
+    "name": "zngl-base-web",
     "version": "0.1.0",
     "private": true,
     "scripts": {

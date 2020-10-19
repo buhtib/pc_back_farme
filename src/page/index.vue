@@ -4,10 +4,6 @@
 		<zDatePicker :time.sync="time1" />
 		<zDateRange :time.sync="time2" />
 
-        <uploadImage />
-        <!-- <uploadImageList /> -->
-
-        {{'2020/2/19' | dateFormat('dt')}}
 	</div>
 </template>
 

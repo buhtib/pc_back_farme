@@ -10,6 +10,7 @@ import "@/filters";
 
 //自定义el主题样式
 import './styles/element-variables.scss';
+import './styles/index.scss';
 import '@/element-ui'
 
 //时间组件样式

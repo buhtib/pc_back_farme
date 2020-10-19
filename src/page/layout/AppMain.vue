@@ -18,10 +18,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/common.scss";
+
 .app-main {
 	box-sizing: border-box;
-	// height: calc(100vh  - #{$page-header_height} - #{$page-header_margin_bottom});
-	// min-height: calc(100vh  - #{$page-header_height} - #{$page-header_margin_bottom});
 	height: 100%;
 	min-height: 100%;
 	width: 100%;

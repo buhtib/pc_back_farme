@@ -102,9 +102,9 @@ export default {
 			this.$message.warning(`当前限制最多上传 ${this.limit} 张图片`);
 		},
 		beforeUpload(__file) {
-			let isLt10M = __file.size / 1024 / 1024 < 10;
+			let isLt10M = __file.size / 1024 / 1024 < 20;
 			if (!isLt10M) {
-				this.$message.error("上传文件大小不能超过 10MB");
+				this.$message.error("上传文件大小不能超过 20MB");
 			}
 			return isLt10M;
 		},
@@ -112,18 +112,14 @@ export default {
 			this.loading = true;
 		},
 		onSuccess(__resultData) {
-			switch (__resultData.code) {
-				case 200:
-					this.loading = false;
-					// this.$message.success(__resultData.message);
-					this.dataList.push(__resultData.data);
-					break;
-
-				default:
-					this.$message.error("上传失败");
-					this.loading = false;
-					break;
+            if (__resultData.code === 0) {
+                this.$message.success("上传成功");
+                this.dataList.push(__resultData.data.url);
+			} else {
+				this.$message.error("上传失败");
 			}
+
+			this.loading = false;
 		},
 		remove(__index) {
 			this.dataList.splice(__index, 1);
@@ -136,18 +132,6 @@ export default {
 };
 </script>
 
-
-<style>
-/*el-image 占位图样式*/
-.img_slot {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	background-color: rgb(245, 247, 250);
-	color: #000;
-}
-</style>
 
 <style lang="scss" scoped>
 .upload {
@@ -223,7 +207,6 @@ export default {
 
 	.dialog_preview_imgs {
 		display: flex;
-		align-items: center;
 		justify-content: center;
 		height: 100%;
 	}
